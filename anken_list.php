@@ -41,6 +41,7 @@ $kind = $_GET['kind'];
 $form = new AnkenListForm();
 
 // RSSのヘッダー作成
+/*
 switch($kind){
 	case 'gene':
 		// 現在公開分 => 一般競争入札
@@ -54,6 +55,30 @@ switch($kind){
 		$form->siteDescription = '一般競争入札を行うもの以外が対象です。指定の〆切日時までに、指定の場所に見積書を提出していただき、落札を決定します。';
 		$form->siteCategory = '簡易公開調達';
 		break;
+}
+*/
+if($state==='pub' && $kind==='gene'){
+	// 現在公開分 => 一般競争入札
+	$form->siteTitle = '01_現在公開分：一般競争入札';
+	$form->siteDescription = '原則として、落札予定価格が一定の金額（委託料では１００万円）を超えるものが対象です。指定の入札日時・場所において入札書を提出していただき、落札を決定します。';
+	$form->siteCategory = '（条件付き）一般競争入札';
+}elseif($state==='pub' && $kind==='easy'){
+	// 現在公開分 => 簡易公開調達
+	$form->siteTitle = '02_簡易公開調達：現在公開分';
+	$form->siteDescription = '一般競争入札を行うもの以外が対象です。指定の〆切日時までに、指定の場所に見積書を提出していただき、落札を決定します。';
+	$form->siteCategory = '簡易公開調達';
+}elseif($state==='end' && $kind==='gene'){
+	// 現在公開分 => 一般競争入札
+	$form->siteTitle = '03_既に終了分：一般競争入札';
+	$form->siteDescription = '原則として、落札予定価格が一定の金額（委託料では１００万円）を超えるものが対象です。指定の入札日時・場所において入札書を提出していただき、落札を決定します。';
+	$form->siteCategory = '（条件付き）一般競争入札';
+}elseif($state==='end' && $kind==='easy'){
+	// 現在公開分 => 簡易公開調達
+	$form->siteTitle = '04_簡易公開調達：既に終了分';
+	$form->siteDescription = '一般競争入札を行うもの以外が対象です。指定の〆切日時までに、指定の場所に見積書を提出していただき、落札を決定します。';
+	$form->siteCategory = '簡易公開調達';
+}else{
+	die('不正なパラメータです。');
 }
 
 $link = pg_connect('host=localhost dbname=nyusatsu_check user=nyusatsu_check password=nyusatsu_check');
@@ -82,13 +107,20 @@ for($i = 0; $i < pg_num_rows($result); $i++){
 	// echo a;
 	$anken = new Anken();
 	
+	// 業務大分類
 	$anken->kbn1 = $row['gyoumu_kbn_1'];
+	// 業務小分類
 	$anken->kbn2 = $row['gyoumu_kbn_2'];
+	// 案件名(事業年度・名称)
 	$anken->ankenName = $row['anken_name'];
+	// 実施機関
 	$anken->agency = $row['kasitu_name'];
+	// 対象URL
 	$anken->link = $row['anken_url'];
-	$anken->company = '';
-	$anken->price = '';
+	// 落札業者名等
+	$anken->company = $row['raku_name'];
+	// 落札金額（税込・円）
+	$anken->price = $row['price'];
 
 	array_push($form->ankenList, $anken);
 }
