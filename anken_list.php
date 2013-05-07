@@ -35,28 +35,9 @@ class AnkenListForm{
 $state = $_GET['state'];
 $kind = $_GET['kind'];
 
-// var_dump($state);
-// var_dump($kind);
-
 $form = new AnkenListForm();
 
 // RSSのヘッダー作成
-/*
-switch($kind){
-	case 'gene':
-		// 現在公開分 => 一般競争入札
-		$form->siteTitle = '和歌山県 役務　（条件付き）一般競争入札';
-		$form->siteDescription = '原則として、落札予定価格が一定の金額（委託料では１００万円）を超えるものが対象です。指定の入札日時・場所において入札書を提出していただき、落札を決定します。';
-		$form->siteCategory = '（条件付き）一般競争入札';
-		break;
-	case 'easy':
-		// 現在公開分 => 簡易公開調達
-		$form->siteTitle = '和歌山県 役務　簡易公開調達';
-		$form->siteDescription = '一般競争入札を行うもの以外が対象です。指定の〆切日時までに、指定の場所に見積書を提出していただき、落札を決定します。';
-		$form->siteCategory = '簡易公開調達';
-		break;
-}
-*/
 if($state==='pub' && $kind==='gene'){
 	// 現在公開分 => 一般競争入札
 	$form->siteTitle = '01_現在公開分：一般競争入札';
