@@ -19,7 +19,7 @@ class AnkenListForm{
 	// title
 	public $siteTitle = '';
 	// link
-	public $siteUrl = 'http://wave.pref.wakayama.lg.jp/ekimu2/';
+	public $siteUrl = 'http://ce50h7/nyusatsu_check_rss/anken_list.php';
 	// description
 	public $siteDescription = '';
 	// category
@@ -97,7 +97,8 @@ for($i = 0; $i < pg_num_rows($result); $i++){
 	// 実施機関
 	$anken->agency = $row['kasitu_name'];
 	// 対象URL
-	$anken->link = $row['anken_url'];
+	$query = array('q' => $row['anken_no']);
+	$anken->link = 'http://ce50h7/nyusatsu_check_view/search.php?'.http_build_query($query);
 	// 落札業者名等
 	$anken->company = $row['raku_name'];
 	// 落札金額（税込・円）
