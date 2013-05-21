@@ -98,7 +98,7 @@ for($i = 0; $i < pg_num_rows($result); $i++){
 	$anken->agency = $row['kasitu_name'];
 	// 対象URL
 	$query = array('q' => $row['anken_no']);
-	$anken->link = 'http://ce50h7/nyusatsu_check_view/search.php?'.http_build_query($query);
+	$anken->link = 'http://ce50h7/nyusatsu_check_view/search/search.php?'.http_build_query($query);
 	// 落札業者名等
 	$anken->company = $row['raku_name'];
 	// 落札金額（税込・円）
