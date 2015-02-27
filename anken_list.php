@@ -68,13 +68,13 @@ if(! $link){
 }
 
 if($state==='pub' && $kind==='gene'){
-	$sql = 'SELECT * FROM t_nyusatsu where keishu_cd = 1 and public_flag = 0';
+	$sql = 'SELECT * FROM v_latest_tenders where keishu_cd = 1 and public_flag = 0';
 }elseif($state==='pub' && $kind==='easy'){
-	$sql = 'SELECT * FROM t_nyusatsu where keishu_cd = 2 and public_flag = 0';
+	$sql = 'SELECT * FROM v_latest_tenders where keishu_cd = 2 and public_flag = 0';
 }elseif($state==='end' && $kind==='gene'){
-	$sql = 'SELECT * FROM t_nyusatsu where keishu_cd = 1 and public_flag = 1';
+	$sql = 'SELECT * FROM v_latest_tenders where keishu_cd = 1 and public_flag = 1';
 }elseif($state==='end' && $kind==='easy'){
-	$sql = 'SELECT * FROM t_nyusatsu where keishu_cd = 2 and public_flag = 1';
+	$sql = 'SELECT * FROM v_latest_tenders where keishu_cd = 2 and public_flag = 1';
 }else{
 	die('不正なパラメータです。');
 }
