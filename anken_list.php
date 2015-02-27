@@ -19,7 +19,7 @@ class AnkenListForm{
 	// title
 	public $siteTitle = '';
 	// link
-	public $siteUrl = 'http://ce50h7/nyusatsu_check_rss/anken_list.php';
+	public $siteUrl = 'http://192.168.11.111/nyusatsu_check_rss/anken_list.php';
 	// description
 	public $siteDescription = '';
 	// category
@@ -68,13 +68,13 @@ if(! $link){
 }
 
 if($state==='pub' && $kind==='gene'){
-	$sql = 'SELECT * FROM t_nyusatsu where keishu_cd = 1 and public_flag = 0';
+	$sql = 'SELECT * FROM v_latest_tenders where keishu_cd = 1 and public_flag = 0';
 }elseif($state==='pub' && $kind==='easy'){
-	$sql = 'SELECT * FROM t_nyusatsu where keishu_cd = 2 and public_flag = 0';
+	$sql = 'SELECT * FROM v_latest_tenders where keishu_cd = 2 and public_flag = 0';
 }elseif($state==='end' && $kind==='gene'){
-	$sql = 'SELECT * FROM t_nyusatsu where keishu_cd = 1 and public_flag = 1';
+	$sql = 'SELECT * FROM v_latest_tenders where keishu_cd = 1 and public_flag = 1';
 }elseif($state==='end' && $kind==='easy'){
-	$sql = 'SELECT * FROM t_nyusatsu where keishu_cd = 2 and public_flag = 1';
+	$sql = 'SELECT * FROM v_latest_tenders where keishu_cd = 2 and public_flag = 1';
 }else{
 	die('不正なパラメータです。');
 }
@@ -98,7 +98,7 @@ for($i = 0; $i < pg_num_rows($result); $i++){
 	$anken->agency = $row['kasitu_name'];
 	// 対象URL
 	$query = array('q' => $row['anken_no']);
-	$anken->link = 'http://ce50h7/nyusatsu_check_view/search/search.php?'.http_build_query($query);
+	$anken->link = 'http://192.168.11.111/nyusatsu_check_view/search/search.php?'.http_build_query($query);
 	// 落札業者名等
 	$anken->company = $row['raku_name'];
 	// 落札金額（税込・円）
