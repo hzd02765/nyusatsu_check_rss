@@ -98,11 +98,17 @@ for($i = 0; $i < pg_num_rows($result); $i++){
 	$anken->agency = $row['kasitu_name'];
 	// 対象URL
 	$query = array('q' => $row['anken_no']);
-	$anken->link = 'http://192.168.11.111/nyusatsu_check_view/search/search.php?'.http_build_query($query);
+	// $anken->link = 'http://192.168.11.115/nyusatsu_check_view/search/search.php?'.http_build_query($query);
+	$anken->link = 'http://'.$_SERVER['SERVER_ADDR'].'/nyusatsu_check_view/search/search.php?'.http_build_query($query);
+	
+	// XMLでは「&nbsp;」がエラーになるのでデコード処理
+	
 	// 落札業者名等
-	$anken->company = $row['raku_name'];
+	// $anken->company = $row['raku_name'];
+    $anken->company = html_entity_decode($row['raku_name'], ENT_QUOTES, 'UTF-8');
 	// 落札金額（税込・円）
-	$anken->price = $row['price'];
+	// $anken->price = $row['price'];
+    $anken->price = html_entity_decode($row['price'], ENT_QUOTES, 'UTF-8');
 
 	array_push($form->ankenList, $anken);
 }
