@@ -40,22 +40,22 @@ $form = new AnkenListForm();
 // RSSのヘッダー作成
 if($state==='pub' && $kind==='gene'){
 	// 現在公開分 => 一般競争入札
-	$form->siteTitle = '01_現在公開分：一般競争入札';
+	$form->siteTitle = 'sakura=>01_現在公開分：一般競争入札';
 	$form->siteDescription = '原則として、落札予定価格が一定の金額（委託料では１００万円）を超えるものが対象です。指定の入札日時・場所において入札書を提出していただき、落札を決定します。';
 	$form->siteCategory = '（条件付き）一般競争入札';
 }elseif($state==='pub' && $kind==='easy'){
 	// 現在公開分 => 簡易公開調達
-	$form->siteTitle = '02_簡易公開調達：現在公開分';
+	$form->siteTitle = 'sakura=>02_簡易公開調達：現在公開分';
 	$form->siteDescription = '一般競争入札を行うもの以外が対象です。指定の〆切日時までに、指定の場所に見積書を提出していただき、落札を決定します。';
 	$form->siteCategory = '簡易公開調達';
 }elseif($state==='end' && $kind==='gene'){
 	// 現在公開分 => 一般競争入札
-	$form->siteTitle = '03_既に終了分：一般競争入札';
+	$form->siteTitle = 'sakura=>03_既に終了分：一般競争入札';
 	$form->siteDescription = '原則として、落札予定価格が一定の金額（委託料では１００万円）を超えるものが対象です。指定の入札日時・場所において入札書を提出していただき、落札を決定します。';
 	$form->siteCategory = '（条件付き）一般競争入札';
 }elseif($state==='end' && $kind==='easy'){
 	// 現在公開分 => 簡易公開調達
-	$form->siteTitle = '04_簡易公開調達：既に終了分';
+	$form->siteTitle = 'sakura=>04_簡易公開調達：既に終了分';
 	$form->siteDescription = '一般競争入札を行うもの以外が対象です。指定の〆切日時までに、指定の場所に見積書を提出していただき、落札を決定します。';
 	$form->siteCategory = '簡易公開調達';
 }else{
